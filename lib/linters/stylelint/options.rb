@@ -29,11 +29,8 @@ module Linters
 
       private
 
-      def combined_config
-        Config.new(
-          content: config,
-          default_config_path: "config/.stylelintrc.json",
-        )
+      def default_config_path
+        "config/.stylelintrc.json"
       end
     end
   end

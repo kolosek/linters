@@ -28,8 +28,8 @@ module Linters
 
       private
 
-      def combined_config
-        Config.new(content: config, default_config_path: "config/tslint.json")
+      def default_config_path
+        "config/tslint.json"
       end
     end
   end

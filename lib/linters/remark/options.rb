@@ -35,8 +35,8 @@ module Linters
         File.expand_path("../../..", __dir__)
       end
 
-      def combined_config
-        Config.new(content: config, default_config_path: "config/remarkrc")
+      def default_config_path
+        "config/remarkrc"
       end
     end
   end

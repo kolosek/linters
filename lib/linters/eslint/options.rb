@@ -24,8 +24,8 @@ module Linters
 
       private
 
-      def combined_config
-        Config.new(content: config, default_config_path: "config/eslintrc")
+      def default_config_path
+        "config/eslintrc"
       end
     end
   end

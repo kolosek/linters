@@ -40,6 +40,21 @@ module Linters
 
       attr_reader :config, :filepath
 
+      # Merges the default config with repo's config
+      # @return [Linters::Config] object implementing `to_yaml` and `to_json`
+      def combined_config
+        Config.new(
+          content: config,
+          default_config_path: default_config_path,
+        )
+      end
+
+      # Required by #combined_config
+      # @return [String] path to default config file
+      def default_config_path
+        not_implemented!(__method__)
+      end
+
       def not_implemented!(method)
         raise NotImplementedError, "implement ##{method} in your Options class"
       end

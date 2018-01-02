@@ -22,8 +22,8 @@ module Linters
 
       private
 
-      def combined_config
-        Config.new(content: config, default_config_path: "config/rubocop.yml")
+      def default_config_path
+        "config/rubocop.yml"
       end
     end
   end
