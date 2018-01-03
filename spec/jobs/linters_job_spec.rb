@@ -13,7 +13,8 @@ RSpec.describe LintersJob, "for scss_lint" do
         violations: [
           {
             line: 1,
-            message: "Style/FrozenStringLiteralComment: Missing magic comment # frozen_string_literal: true.",
+            message: "Style/FrozenStringLiteralComment: " +
+                     "Missing magic comment # frozen_string_literal: true.",
           },
         ],
       )

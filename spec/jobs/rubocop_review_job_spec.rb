@@ -69,7 +69,8 @@ RSpec.describe RubocopReviewJob do
           violations: [
             {
               line: 3,
-              message: "Lint/UnusedMethodArgument: Unused method argument - baz.",
+              message: "Lint/UnusedMethodArgument: " +
+                       "Unused method argument - baz.",
             },
           ],
         )
@@ -98,7 +99,8 @@ RSpec.describe RubocopReviewJob do
           violations: [
             {
               line: 3,
-              message: "Lint/UnusedMethodArgument: Unused method argument - baz.",
+              message: "Lint/UnusedMethodArgument: " +
+                       "Unused method argument - baz.",
             },
           ],
         )
