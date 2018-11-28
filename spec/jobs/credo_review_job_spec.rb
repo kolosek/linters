@@ -9,6 +9,7 @@ RSpec.describe CredoReviewJob do
         config: "",
         content: content,
         filename: "foo/test.ex",
+        linter_name: "credo",
         violations: [
           {
             line: 4,
@@ -42,10 +43,33 @@ RSpec.describe CredoReviewJob do
         config: config,
         content: content,
         filename: "foo/test.exs",
+        linter_name: "credo",
         violations: [
           {
             line: 4,
             message: "Found a TODO tag in a comment: # TODO: Fix violations",
+          },
+        ],
+      )
+    end
+  end
+
+  context "when another file is imported" do
+    it "does not error" do
+      content = <<~EOS
+        # TODO: Fix
+        import_config "config/missing.exs"
+      EOS
+
+      expect_violations_in_file(
+        config: "",
+        content: content,
+        filename: "config/foo.exs",
+        linter_name: "credo",
+        violations: [
+          {
+            line: 1,
+            message: "Found a TODO tag in a comment: # TODO: Fix",
           },
         ],
       )

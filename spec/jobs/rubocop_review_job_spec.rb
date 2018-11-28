@@ -16,10 +16,11 @@ RSpec.describe RubocopReviewJob do
       expect_violations_in_file(
         content: content,
         filename: "foo/test.rb",
+        linter_name: "rubocop",
         violations: [
           {
             line: 3,
-            message: "Unused method argument - baz.",
+            message: "Lint/UnusedMethodArgument: Unused method argument - baz.",
           },
         ],
       )
@@ -39,6 +40,7 @@ RSpec.describe RubocopReviewJob do
           config: config,
           content: "def yo;   42 end",
           filename: "foo/test.rb",
+          linter_name: "rubocop",
           violations: [],
         )
       end
@@ -63,10 +65,12 @@ RSpec.describe RubocopReviewJob do
           config: config,
           content: content,
           filename: "foo/test.rb",
+          linter_name: "rubocop",
           violations: [
             {
               line: 3,
-              message: "Unused method argument - baz.",
+              message: "Lint/UnusedMethodArgument: " +
+                       "Unused method argument - baz.",
             },
           ],
         )
@@ -91,10 +95,12 @@ RSpec.describe RubocopReviewJob do
           config: config,
           content: content,
           filename: "foo/test.rb",
+          linter_name: "rubocop",
           violations: [
             {
               line: 3,
-              message: "Unused method argument - baz.",
+              message: "Lint/UnusedMethodArgument: " +
+                       "Unused method argument - baz.",
             },
           ],
         )
@@ -107,10 +113,11 @@ RSpec.describe RubocopReviewJob do
       expect_violations_in_file(
         content: "def yo 42 end",
         filename: "foo/test.rb",
+        linter_name: "rubocop",
         violations: [
           {
             line: 1,
-            message: "unexpected token tINTEGER",
+            message: "Lint/Syntax: unexpected token tINTEGER",
           },
         ],
       )

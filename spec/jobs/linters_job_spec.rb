@@ -1,6 +1,6 @@
 require "jobs/linters_job"
 
-RSpec.describe LintersJob do
+RSpec.describe LintersJob, "for scss_lint" do
   include LintersHelper
 
   context "when linter name is a single word" do
@@ -13,7 +13,8 @@ RSpec.describe LintersJob do
         violations: [
           {
             line: 1,
-            message: "Missing magic comment # frozen_string_literal: true.",
+            message: "Style/FrozenStringLiteralComment: " +
+                     "Missing magic comment # frozen_string_literal: true.",
           },
         ],
       )

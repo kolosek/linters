@@ -1,17 +1,16 @@
 require "linters/base/options"
-require "linters/tslint/tokenizer"
+require "linters/remark/tokenizer"
 
 module Linters
-  module Tslint
+  module Remark
     class Options < Linters::Base::Options
       def command
-        path = File.join(File.dirname(__FILE__), "../../..")
-        cmd = "/node_modules/tslint/bin/tslint #{filepath}"
-        File.join(path, cmd)
+        cmd = "remark-cli/cli.js #{filepath}"
+        "NODE_PATH=#{node_modules_path} #{File.join(node_modules_path, cmd)}"
       end
 
       def config_filename
-        "tslint.json"
+        ".remarkrc"
       end
 
       def tokenizer
@@ -28,8 +27,16 @@ module Linters
 
       private
 
+      def node_modules_path
+        File.join(current_path, "node_modules")
+      end
+
+      def current_path
+        File.expand_path("../../..", __dir__)
+      end
+
       def default_config_path
-        "config/tslint.json"
+        "config/remarkrc"
       end
     end
   end

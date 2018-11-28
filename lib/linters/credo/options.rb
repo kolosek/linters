@@ -4,8 +4,9 @@ require "linters/credo/tokenizer"
 module Linters
   module Credo
     class Options < Linters::Base::Options
-      def command(filename)
-        mix("credo #{filename} --strict --all --format=flycheck")
+      def command
+        "#{strip_import_config} && " \
+          "#{mix("credo #{filepath} --strict --all --format=flycheck")}"
       end
 
       def config_filename
@@ -16,11 +17,15 @@ module Linters
         Tokenizer.new
       end
 
-      def config_content(content)
-        content
+      def config_content
+        config
       end
 
       private
+
+      def strip_import_config
+        "sed -i.bak '/import_config/d' #{filepath}"
+      end
 
       def mix(command)
         "MIX_EXS=#{mix_exs_path} mix #{command}"
