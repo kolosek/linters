@@ -1,1 +1,1 @@
-resque: bin/resque
+resque: TERM_CHILD=1 RESQUE_TERM_TIMEOUT=7 QUEUES=linters,eslint_review,haml_review,jshint_review,rubocop_review,scss_review,coffeelint_review,tslint_review,credo_review,reek_review,flog_review bundle exec rake jobs:work
